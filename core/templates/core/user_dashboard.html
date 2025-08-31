@@ -1,0 +1,22 @@
+<h2>Hi {{request.user.username|default:request.user.email}}</h2>
+{% if next_booking %}
+<div class="card">
+  <h3>Your next booking</h3>
+  <p><strong>Date:</strong> {{next_booking.slot.date}}</p>
+  <p><strong>Time:</strong> {{next_booking.slot.start_time}}</p>
+  <p><strong>Clinic:</strong> {{next_booking.slot.clinic.name}}</p>
+  <p><strong>Status:</strong> {{next_booking.status}}</p>
+  {% if next_booking.slot.date > today %}
+  <p><a href="{% url 'booking:cancel' next_booking.id %}">Cancel booking</a></p>
+  <p><a href="{% url 'booking:edit' next_booking.id %}">Edit booking</a></p>
+  {% endif %}
+</div>
+{% else %}
+<p>You have no upcoming bookings.</p>
+{% endif %}
+
+<div class="actions">
+  <a href="{% url 'book_slot' %}" class="btn btn-primary">Book a slot</a>
+  <a href="{% url 'booking_history' %}" class="btn btn-secondary">View all bookings</a>
+  <a href="{% url 'edit_profile' %}" class="btn btn-light">Edit profile</a>
+</div>

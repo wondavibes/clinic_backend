@@ -1,0 +1,19 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: burlywood;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  color: rgb(164, 164, 219);
+}

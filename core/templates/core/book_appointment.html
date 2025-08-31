@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}" />
+    <title>Book An Appointment</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Book an Appointment</h2>
+
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }} {% if form.errors %}
+        <div class="error-messages">
+          {% for error in form.non_field_errors %}
+          <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <button type="submit">Book Now</button>
+      </form>
+    </div>
+  </body>
+</html>
