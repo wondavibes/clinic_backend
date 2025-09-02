@@ -93,4 +93,9 @@ def book_slot(request):
 
     return render(request, 'core/book_appointment.html', {'form': form})
 
+@login_required
+def booking_history(request):
+    bookings = Booking.objects.filter(user=request.user).order_by('-booked_at')
+    return render(request, 'core/booking_history.html', {'bookings' : bookings})
+
 # Create your views here.

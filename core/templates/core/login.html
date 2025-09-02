@@ -7,7 +7,7 @@
       body {
         font-family: Arial, sans-serif;
         padding: 2rem;
-        background-color: #e6ffe6;
+        background-color: burlywood;
       }
       .container {
         max-width: 500px;
@@ -18,13 +18,18 @@
         box-shadow: 0 0 10px rgba(0, 128, 0, 0.1);
         text-align: center;
       }
-      h2 {
+      h2,
+      h1 {
         color: green;
+      }
+      .spec {
+        color: blue;
       }
     </style>
   </head>
   <body>
     <div class="container">
+      <h1>Welcome to <span class="spec">MyClinic</span></h1>
       <h2>Login</h2>
       <form method="post">
         {% csrf_token %} {{ form.as_p }}

@@ -1,0 +1,8 @@
+{% block content %}
+<h1>Booking History</h1>
+<ol>
+  {% for booking in bookings %}
+  <li>{{booking.slot.clinic}} ({{booking.slot.date}})</li>
+  {% endfor %}
+</ol>
+{% endblock %}
