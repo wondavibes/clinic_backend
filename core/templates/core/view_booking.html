@@ -1,0 +1,27 @@
+{% extends core/base.html %}
+{% block title %}Booking Details{% endblock %}
+{% block content %}
+<div class="bg-white shadow-md rounded-lg p-6 max-w-2xl mx-auto">
+  <h2 class="text-xl font-bold mb-4">Booking Details</h2>
+
+  <div class="space-y-4">
+    <div>
+      <span class="font-semibold">Date:</span> {{ booking.slot.date }}
+    </div>
+    <div>
+      <span class="font-semibold">Time:</span> {{ booking.slot.start_time }} - {{ booking.slot.end_time }}
+    </div>
+    <div>
+      <span class="font-semibold">Clinic:</span> {{ booking.slot.clinic.name }}
+    </div>
+    <div>
+      <span class="font-semibold">Status:</span> {{ booking.status }}
+    </div>
+  </div>
+
+  <a
+    href="{% url 'booking_history' %}"
+    class="mt-6 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+  >
+    Back to Booking History
+  </a>

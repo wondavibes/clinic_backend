@@ -1,40 +1,36 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Login</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 2rem;
-        background-color: burlywood;
-      }
-      .container {
-        max-width: 500px;
-        margin: auto;
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 128, 0, 0.1);
-        text-align: center;
-      }
-      h2,
-      h1 {
-        color: green;
-      }
-      .spec {
-        color: blue;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Welcome to <span class="spec">MyClinic</span></h1>
-      <h2>Login</h2>
-      <form method="post">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Log In</button>
-      </form>
+{% extends 'core/base.html' %} {% block title %}Login{% endblock %} 
+{% block content %}
+
+<div class="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
+  <h2 class="text-xl font-bold mb-4">Welcome Back</h2>
+
+  <form method="post" class="space-y-4">
+    {% csrf_token %} {{ form.non_field_errors }}
+
+    <div>
+      <label class="block font-medium mb-1">Email</label>
+      {{ form.email }}
     </div>
-  </body>
-</html>
+
+    <div>
+      <label class="block font-medium mb-1">Password</label>
+      {{ form.password }}
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    >
+      Log In
+    </button>
+  </form>
+
+  <p class="mt-4 text-sm text-gray-600 text-center">
+    Don’t have an account?
+    <a href="{% url 'Home' %}" class="text-blue-600 hover:underline"
+      >Register here</a
+    >.
+  </p>
+</div>
+
+{% endblock %}

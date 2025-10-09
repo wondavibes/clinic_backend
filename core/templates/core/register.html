@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% block title %} Register {% endblock %} 
+{% block content %}
+
+<div class="bg-white shadow-md rounded-lg p-6">
+  <h2 class="text-xl font-bold mb-4">Create Your Account</h2>
+
+  <form method="post" class="space-y-4">
+    {% csrf_token %} {{ form.non_field_errors }}
+
+    <div>
+      <label class="block font-medium mb-1">Email</label>
+      {{ form.email }}
+    </div>
+
+    <div>
+      <label class="block font-medium mb-1">Full Name</label>
+      {{ form.full_name }}
+    </div>
+
+    <div>
+      <label class="block font-medium mb-1">Phone Number</label>
+      {{ form.phone_number }}
+    </div>
+
+    <div>
+      <label class="block font-medium mb-1">Clinic</label>
+      {{ form.clinic }}
+    </div>
+
+    <div>
+      <label class="block font-medium mb-1">Password</label>
+      {{ form.password1 }}
+    </div>
+
+    <div>
+      <label class="block font-medium mb-1">Confirm Password</label>
+      {{ form.password2 }}
+    </div>
+
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      Register
+    </button>
+  </form>
+
+  <p class="mt-4 text-sm text-gray-600">
+    Already have an account?
+    <a href="{% url 'custom_login' %}" class="text-blue-600 hover:underline">Log in here</a>.
+  </p>
+</div>
+{% endblock %}

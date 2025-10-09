@@ -1,5 +1,7 @@
 from django import forms
 from .models import Booking, AppointmentSlot
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser, Clinic
 
 class BookingForm(forms.ModelForm):
     class Meta:
@@ -22,3 +24,27 @@ class BookingForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+class CustomUserCreationForm(UserCreationForm):
+    clinic = forms.ModelChoiceField(
+    queryset = Clinic.objects.all(),
+    empty_label = "Select your clinic",
+    required=True
+)
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'full_name', 'clinic', 'phone_number')
+        labels = {
+            'email': 'Email Address',
+            'full_name': 'Full Name',
+        }
+        widgets = {
+            'email': forms.EmailInput(attrs={'placeholder': 'Enter your email'}),
+            'full_name': forms.TextInput(attrs={'placeholder': 'Enter your full name'}),
+            'phone_number': forms.TextInput(attrs={'placeholder': 'Enter your phone number'}),
+            'password1': forms.PasswordInput(attrs={'placeholder': 'Enter password'}),
+            'password2': forms.PasswordInput(attrs={'placeholder': 'Confirm password'}),
+            }
+        help_texts = {
+            'email' : "We'll never share your email"
+        }

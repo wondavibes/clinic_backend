@@ -1,25 +1,28 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="{% static 'core/styles.css' %}" />
-    <title>Book An Appointment</title>
-  </head>
-  <body>
-    <div class="container">
-      <h2>Book an Appointment</h2>
+{% extends 'core/base.html' %}
+{% block title %}Book Appointment{% endblock %}
+{% block content %}
 
-      <form method="post">
-        {% csrf_token %} {{ form.as_p }} {% if form.errors %}
-        <div class="error-messages">
-          {% for error in form.non_field_errors %}
-          <p style="color: red">{{ error }}</p>
-          {% endfor %}
-        </div>
-        {% endif %}
+<div class="bg-white shadow-md rounded-lg p-6 max-w-2xl mx-auto">
+  <h2 class="text-xl font-bold mb-4">Book an Appointment</h2>
 
-        <button type="submit">Book Now</button>
-      </form>
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+      <label class="block font-medium mb-1">Available Time Slot</label>
+      {{ form.slot }}
     </div>
-  </body>
-</html>
+
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      Confirm Booking
+    </button>
+  </form>
+
+  <p class="mt-4 text-sm text-gray-600">
+    Need to reschedule? Visit your
+    <a href="{% url 'booking_history' %}" class="text-blue-600 hover:underline">Booking History</a>.
+  </p>
+</div>
+
+{% endblock %}
