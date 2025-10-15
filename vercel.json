@@ -1,17 +1,18 @@
 {
+  "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "api/index.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/api/index.py"
+      "dest": "api/index.py"
     }
   ],
   "env": {
-    "DJANGO_SETTINGS_MODULE": "clinic.settings"
+    "DJANGO_SETTINGS_MODULE": "clinic_api.settings"  
   }
 }
