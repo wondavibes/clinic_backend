@@ -13,4 +13,10 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clinic_api.settings')
 
-application = get_wsgi_application()
+try:
+    application = get_wsgi_application()
+except:
+    #fallback for vercel cold start
+    from django.conf import settings
+    settings.USE_TZ = True
+    application = get_wsgi_application()
